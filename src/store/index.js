@@ -3,8 +3,8 @@ import placesReducer from '../reducers/places'
 import counterReducer from '../reducers/counter'
 
 const rootReducer = combineReducers({
-  places: placesReducer,
-  counter: counterReducer
+  placesReducer,
+  counterReducer
 })
 
 const configureStore = () => {

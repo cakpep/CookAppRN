@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    count: state.counter.count
+    count: state.counterReducer.count
   }
 }
 

@@ -9,8 +9,7 @@ import TotalItem from './TotalItem';
 
 class PlaceScreen extends Component {
     state = {
-      placeName: '',
-      places: []
+      placeName: ''
     }
 
     placeSubmitHandler = () => {
@@ -52,7 +51,6 @@ class PlaceScreen extends Component {
                 placeholder = "Seach Places"
                 style = { styles.placeInput }
                 value = { this.state.placeName }
-                inlineImageLeft = 'search_icon'
                 autoFocus = { true }
                 onChangeText = { this.placeNameChangeHandler }
               >
@@ -96,7 +94,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    places: state.places.places
+    places: state.placesReducer.places
   }
 }
 
