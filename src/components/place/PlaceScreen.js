@@ -5,6 +5,7 @@ import { StyleSheet, View, TextInput, Button, FlatList } from 'react-native';
 
 import { addPlace } from '../../actions/PlaceActions';
 import ListItem from './ListItem';
+import TotalItem from './TotalItem';
 
 class PlaceScreen extends Component {
     state = {
@@ -13,17 +14,17 @@ class PlaceScreen extends Component {
     }
 
     placeSubmitHandler = () => {
-      console.log("Submitted");
       if(this.state.placeName.trim() === '') {
-        return;
+        return
       }
-      this.props.add(this.state.placeName);
+      this.props.add(this.state.placeName)
+      this.state.placeName = ""
     }
 
     placeNameChangeHandler = (value) => {
       this.setState({
         placeName: value
-      });    
+      })
     }
 
     placesOutput = () => {
@@ -41,26 +42,32 @@ class PlaceScreen extends Component {
    }
 
     render() {
-        return (
-            <View style={ styles.container }>
-                <View style = { styles.inputContainer }>
-                    <TextInput
-                        placeholder = "Seach Places"
-                        style = { styles.placeInput }
-                        value = { this.state.placeName }
-                        onChangeText = { this.placeNameChangeHandler }
-                        ></TextInput>
+      return (
+        <View style={ styles.container }>
+          <TotalItem
+            items = {this.props.places}
+            />
+          <View style = { styles.inputContainer }>
+            <TextInput
+                placeholder = "Seach Places"
+                style = { styles.placeInput }
+                value = { this.state.placeName }
+                inlineImageLeft = 'search_icon'
+                autoFocus = { true }
+                onChangeText = { this.placeNameChangeHandler }
+              >
+            </TextInput>
 
-                    <Button title = 'Add' 
-                        style = { styles.placeButton }
-                        onPress = { this.placeSubmitHandler }
-                    />
-                </View>
-                <View style = { styles.listContainer }>
-                  { this.placesOutput() }
-                </View>
-            </View>
-        );
+            <Button title = 'Add' 
+                style = { styles.placeButton }
+                onPress = { this.placeSubmitHandler }
+            />
+          </View>
+          <View style = { styles.listContainer }>
+            { this.placesOutput() }
+          </View>
+        </View>
+      )
     }
 }
 
@@ -85,7 +92,7 @@ const styles = StyleSheet.create({
   listContainer: {
     width: '100%'
   }
-});
+})
 
 const mapStateToProps = state => {
   return {
