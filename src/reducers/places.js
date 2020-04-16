@@ -1,12 +1,14 @@
-import { ADD_PLACE } from '../constants/ActionTypes';
+import {
+  ADD_PLACE
+} from '../constants/ActionTypes'
 
 const initialState = {
   placeName: '',
   places: []
-};
+}
 
 const placeReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case ADD_PLACE:
       return {
         ...state,
@@ -14,10 +16,10 @@ const placeReducer = (state = initialState, action) => {
           key: Math.random(),
           value: action.payload
         })
-      };
-    default:
-      return state;
+      }
+      default:
+        return state
   }
 }
 
-export default placeReducer;
+export default placeReducer

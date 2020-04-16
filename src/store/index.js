@@ -1,12 +1,14 @@
-import { createStore,combineReducers } from 'redux';
-import placesReducer from '../reducers/places';
+import { createStore,combineReducers } from 'redux'
+import placesReducer from '../reducers/places'
+import counterReducer from '../reducers/counter'
 
 const rootReducer = combineReducers({
-  places: placesReducer
-});
+  places: placesReducer,
+  counter: counterReducer
+})
 
 const configureStore = () => {
-  return createStore(rootReducer);
+  return createStore(rootReducer)
 }
 
-export default configureStore;
+export default configureStore
