@@ -13,12 +13,16 @@ test('render with styles', () => {
             padding: 4,
         }
     })
-   
-    const tree = renderer.create(<MonoText style = {styles.textHighlightContainer}> Test </MonoText>).toJSON()
+
+    const tree = renderer
+        .create(<MonoText style = {styles.textHighlightContainer}> Test </MonoText>)
+        .toJSON()
     expect(tree).toMatchSnapshot()
 })
 
 test('render with no styles', () => {
-    const tree = renderer.create(<MonoText> No Styles </MonoText>).toJSON()
+    const tree = renderer
+        .create(<MonoText> No Styles </MonoText>)
+        .toJSON()
     expect(tree).toMatchSnapshot()
 })
