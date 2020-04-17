@@ -48,7 +48,8 @@ class PlaceScreen extends Component {
             />
           <View style = { styles.inputContainer }>
             <TextInput
-                placeholder = "Seach Places"
+                placeholder = "Input Place Name"
+                underlineColorAndroid = { '#D3D3D3' }
                 style = { styles.placeInput }
                 value = { this.state.placeName }
                 autoFocus = { true }
@@ -76,19 +77,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   inputContainer: {
+    padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%'
   },
   placeInput: {
-    width: '70%'
+    width: '100%',
+    height: 40,
+    paddingLeft: 6,
+    paddingRight: 6
   },
   placeButton: {
     width: '30%'
   },
   listContainer: {
-    width: '100%'
+    width: '100%',
+    padding: 10
   }
 })
 
