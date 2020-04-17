@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Button, View, Text } from "react-native"
+import { StyleSheet, TouchableOpacity, View, Text } from "react-native"
 import { connect } from 'react-redux'
 
 import { increment, decrement } from '../../actions/CounterActions';
@@ -17,16 +17,22 @@ class Counter extends Component {
   render() {
     const { count } = this.props;
     return (
-      <View>
-        <Text>Clicked: { count} times</Text>
-        <Button title = '+'
-        style = { styles.placeButton }
-          onPress={this.onIncrement}
-          />
-        <Button title = '-'
-          style = { styles.placeButton }
-          onPress={this.onDecrement}
-        />
+      <View style={ styles.container }>
+        <Text style={ styles.textInfo }>Clicked: { count} times!</Text>
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity
+            style = { styles.placeButton }
+            onPress={this.onIncrement}>
+              <Text>INCREMENT 1</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style = { styles.placeButton }
+            onPress={this.onDecrement}>
+              <Text>DECREMENT 1</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -34,12 +40,20 @@ class Counter extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   placeButton: {
-    width: '30%'
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+    width: 300,
+    marginTop: 16,
+  },
+  textInfo: {
+    marginTop: 50,
+    fontSize: 25 
   }
 })
 
