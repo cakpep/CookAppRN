@@ -1,24 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import PlaceScreen from './place/PlaceScreen';
-import CounterScreen from './counter/Counter';
+import BottomTabNavigator from './navigation/BottomTabNavigator'
+
+const Stack = createStackNavigator()
 
 export default function MainApp() {
+  const [initialNavigationState, setInitialNavigationState] = React.useState();
+  const containerRef = React.useRef();
+
   return (
     <View style={styles.container}>
-        <CounterScreen/>
-        <Text>Open up App.js to start working on your app!</Text>
-        <PlaceScreen/>
-    </View>
-  );
+        <NavigationContainer ref={containerRef} initialState={initialNavigationState}>
+          <Stack.Navigator>
+            <Stack.Screen name="Root" component={BottomTabNavigator} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingLeft: '10px',
-    paddingRight: '10px'
   },
-});
+})
