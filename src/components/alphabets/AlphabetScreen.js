@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import * as Speech from 'expo-speech'
+import Colors from '../../constants/Colors'
 
 export default class AlphabetsScreen extends Component {
     state = {
         index: 0,
+        speaking: false,
         alphabets: [
-            'A','B','C','D','E', 'F', 'I', 'J', 'K', 'L', 'M', 'N'
+            'A','B','C','D','E', 'F', 'G', 'H','I', 'J', 'K', 'L', 'M', 'N',
+            'O', 'P', 'Q', 'R','S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+            '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
         ]
     }
 
@@ -42,58 +46,72 @@ export default class AlphabetsScreen extends Component {
     }
 
     speechMyWord() {
-        let rn = this
-        rn.speakThisWord()
+        this.setState({ speaking : true });
+        this.speakThisWord()
         setTimeout(function(){
-            rn.giveMeWord('NEXT')
-        }, 1000)
+            this.giveMeWord('NEXT')
+            this.setState({ speaking : false });
+        }.bind(this), 1000)
     }
 
     nextWord() {
-        let rn = this
-        rn.speakThisWord()
+        this.setState({ speaking : true });
+        this.speakThisWord()
         setTimeout(function(){
-            rn.giveMeWord('NEXT')
-        }, 1000)
+            this.giveMeWord('NEXT')
+            this.setState({ speaking : false });
+        }.bind(this), 1000)
     }
 
     prevWord() {
-        let rn = this
-        rn.speakThisWord()
+        this.setState({ speaking : true });
+        this.speakThisWord()
         setTimeout(function(){
-            rn.giveMeWord('PREV')
-        }, 1000)
+            this.giveMeWord('PREV')
+            this.setState({ speaking : false });
+        }.bind(this), 1000)
     }
 
     render() {
         return (
-            <View style={styles.itemContainer}>
-                <Text style={{ marginTop: 50, fontSize: 25 }}>Alphabets!</Text>
-
-                <TouchableOpacity onPress={() => this.speakThisWord()}>
-                    <Text style={styles.textView}>{ this.currentWordToSpeech() }</Text>
-                </TouchableOpacity>
-
+            <ScrollView
+                noSpacer = { true }
+                noScroll = { true }
+                style = {styles.container}
+            >
                 <View style={styles.itemContainer}>
+                    <Text style = {{ marginTop: 50, fontSize: 25 }}>Alphabets!</Text>
 
-                    <TouchableOpacity
-                        style={styles.buttonSpeak}
-                        onPress={() => this.speechMyWord()}>
-                        <Text>Say again!</Text>
+                    <TouchableOpacity onPress={() => this.speakThisWord()}>
+                        <Text style= {styles.textView}>{ this.currentWordToSpeech() }</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
-                        style={styles.buttonBack}
-                        onPress={() => this.prevWord()}>
-                        <Text>Back</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.buttonNext}
-                        onPress={() => this.nextWord()}>
-                        <Text>Next</Text>
-                    </TouchableOpacity>
+                    <View style={styles.itemContainer}>
+
+                        <TouchableOpacity
+                            style = {styles.buttonSpeak}
+                            onPress = {() => this.speakThisWord()}
+                            >
+                            <Text>Say again!</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            disabled = { this.state.speaking }
+                            style = {styles.buttonBack}
+                            onPress = {() => this.prevWord()}
+                            >
+                            <Text>Back</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            disabled = { this.state.speaking }
+                            style = {styles.buttonNext}
+                            onPress = {() => this.nextWord()}
+                            >
+                            <Text>Next</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -113,7 +131,7 @@ const styles = StyleSheet.create({
     },
     buttonSpeak: {
         alignItems: 'center',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: Colors.noticeText,
         padding: 10,
         width: 300,
         marginTop: 16,
