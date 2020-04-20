@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 
 import BottomTabNavigator from '../navigation/BottomTabNavigator'
 import PlaceScreen from '../place/PlaceScreen'
-import AlphabetsScreen from '../alphabets/alphabets'
+import AlphabetsScreen from '../alphabets/AlphabetScreen'
 
 const Stack = createStackNavigator()
 
