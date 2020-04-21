@@ -26,3 +26,7 @@ test('render with no styles', () => {
         .toJSON()
     expect(tree).toMatchSnapshot()
 })
+
+test('it should be failed', () => {
+    expect(1).toBe(2)
+});
