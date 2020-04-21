@@ -18,6 +18,16 @@ export default class HomeScreen extends Component {
             onPress={() => this.props.navigation.navigate('Counter')}>
             <Text>Open Counter Screen</Text>
           </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('Alphabets')}>
+            <Text>Alphabets</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => this.props.navigation.navigate('RandomPeople')}>
+            <Text>Random People</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
